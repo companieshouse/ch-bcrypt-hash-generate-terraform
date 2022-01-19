@@ -9,8 +9,8 @@ terraform {
   }
 }
 
-module "hash_check" {
-  source = "./hash-check"
+module "hash-generate" {
+  source = "./hash-generate"
 
   environment                           = var.environment
   lambda_handler_name                   = var.lambda_handler_name
