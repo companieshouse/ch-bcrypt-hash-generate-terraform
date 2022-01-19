@@ -2,8 +2,8 @@ locals {
   lambda_function_name = "${var.service}-${var.environment}"
 }
 
-resource "aws_lambda_function" "hash_check" {
-  depends_on = [aws_cloudwatch_log_group.hash_check]
+resource "aws_lambda_function" "hash_generate" {
+  depends_on = [aws_cloudwatch_log_group.hash_generate]
 
   function_name = local.lambda_function_name
   s3_bucket     = var.release_bucket_name
@@ -21,7 +21,7 @@ resource "aws_lambda_function" "hash_check" {
   }
 }
 
-resource "aws_cloudwatch_log_group" "hash_check" {
+resource "aws_cloudwatch_log_group" "hash_generate" {
   name              = "/aws/lambda/${local.lambda_function_name}"
   retention_in_days = var.lambda_logs_retention_days
 }
@@ -57,5 +57,5 @@ resource "aws_lambda_permission" "lambda_permission" {
   function_name = local.lambda_function_name
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = "${aws_api_gateway_rest_api.hash_check.execution_arn}/*/*/*"
+  source_arn = "${aws_api_gateway_rest_api.hash_generate.execution_arn}/*/*/*"
 }
