@@ -1,0 +1,5 @@
+aws_profile = "heritage-development-eu-west-2"
+
+environment = "development"
+
+lambda_timeout_seconds = 300
