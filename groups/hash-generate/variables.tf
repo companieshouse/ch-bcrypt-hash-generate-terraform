@@ -28,7 +28,7 @@ variable "service" {
 variable "lambda_handler_name" {
   type        = string
   description = "The lambda function entrypoint"
-  default     = "uk.gov.companieshouse.chbcrypthashcheck.Handler::handleRequest"
+  default     = "index.handler"
 }
 
 variable "lambda_logs_retention_days" {
