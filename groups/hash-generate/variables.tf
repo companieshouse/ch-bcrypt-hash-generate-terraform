@@ -52,7 +52,7 @@ variable "lambda_timeout_seconds" {
 variable "lambda_runtime" {
   type        = string
   description = "The lambda runtime to use for the function"
-  default     = "nodejs14.x"
+  default     = "nodejs12.x"
 }
 
 variable "release_bucket_name" {
