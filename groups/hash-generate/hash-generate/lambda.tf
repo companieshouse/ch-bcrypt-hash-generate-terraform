@@ -57,5 +57,5 @@ resource "aws_lambda_permission" "lambda_permission" {
   function_name = local.lambda_function_name
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = "${aws_api_gateway_rest_api.hash_generate.execution_arn}/*/*"
+  source_arn = "${aws_api_gateway_rest_api.hash_generate.execution_arn}/*/*/*"
 }
