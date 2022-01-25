@@ -95,3 +95,14 @@ resource "aws_api_gateway_usage_plan_key" "main" {
 output "api_key" {
   value = aws_api_gateway_api_key.hash_generate_key.value
 }
+
+resource "aws_api_gateway_method_settings" "hash_generate_resource_logging" {
+  rest_api_id = aws_api_gateway_rest_api.hash_generate.id
+  stage_name  = aws_api_gateway_stage.stage.stage_name
+  method_path = "*/*"
+  settings {
+    logging_level = "INFO"
+    data_trace_enabled = true
+    metrics_enabled = true
+  }
+}
