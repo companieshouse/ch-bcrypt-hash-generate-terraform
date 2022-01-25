@@ -1,6 +1,6 @@
 resource "aws_api_gateway_rest_api" "hash_generate" {
   name = "${var.service}-${var.environment}"
-  description = "API gateway for the bcrypt hash check service"
+  description = "API gateway for the bcrypt hash generate service"
 
   endpoint_configuration {
     types = ["REGIONAL"]
