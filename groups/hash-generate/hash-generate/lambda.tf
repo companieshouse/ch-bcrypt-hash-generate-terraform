@@ -68,6 +68,6 @@ data "aws_iam_policy" "logging" {
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_logging" {
-  role       = "${aws_iam_role.lambda_execution.name}"
-  policy_arn = "${data.aws_iam_policy.logging.arn}"
+  role       = aws_iam_role.lambda_execution.name
+  policy_arn = data.aws_iam_policy.logging.arn
 }
