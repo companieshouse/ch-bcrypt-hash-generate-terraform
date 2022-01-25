@@ -3,7 +3,10 @@ locals {
 }
 
 resource "aws_lambda_function" "hash_generate" {
-  depends_on = [aws_cloudwatch_log_group.hash_generate]
+  depends_on = [
+    aws_cloudwatch_log_group.hash_generate,
+    aws_iam_role.lambda_execution
+  ]
 
   function_name = local.lambda_function_name
   s3_bucket     = var.release_bucket_name
@@ -48,6 +51,21 @@ data "aws_iam_policy_document" "lambda_trust" {
         "lambda.amazonaws.com"
       ]
     }
+  }
+
+  statement {
+
+    effect = "Allow"
+
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents"
+    ]
+
+    resources = [
+      "arn:aws:logs:*:*:*"
+    ]
   }
 }
 
