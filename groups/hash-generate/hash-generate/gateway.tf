@@ -10,8 +10,7 @@ resource "aws_api_gateway_rest_api" "hash_generate" {
 resource "aws_api_gateway_resource" "hash_generate_resource" {
   rest_api_id = aws_api_gateway_rest_api.hash_generate.id
   parent_id   = aws_api_gateway_rest_api.hash_generate.root_resource_id
-  path        = "/generatehash"
-  path_part   = "generatehash"
+  path_part   = "hashcheck"
 }
 
 resource "aws_api_gateway_method" "hash_generate_method" {
