@@ -1,5 +1,5 @@
 aws_account = "live"
-aws_profile = "heritage-live-eu-west-2"
+aws_profile = "live-eu-west-2"
 
 environment = "live"
 
