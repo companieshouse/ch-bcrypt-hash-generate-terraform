@@ -36,7 +36,7 @@ resource "aws_api_gateway_method_response" "response_200" {
   http_method = aws_api_gateway_method.hash_generate_method.http_method
   status_code = "200"
   response_models = {
-    "text/plain" = "Empty"
+    "application/json" = "Empty"
   }
 }
 
