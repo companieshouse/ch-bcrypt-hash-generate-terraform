@@ -2,6 +2,10 @@ locals {
   lambda_function_name = "${var.service}-${var.environment}"
 }
 
+data "aws_lambda_function" "existing" {
+  function_name = local.lambda_function_name
+}
+
 resource "aws_lambda_function" "hash_generate" {
   depends_on = [
     aws_cloudwatch_log_group.hash_generate,
@@ -57,7 +61,7 @@ data "aws_iam_policy_document" "lambda_trust" {
 resource "aws_lambda_permission" "lambda_permission" {
   statement_id  = "AllowApiToInvokeLambda"
   action        = "lambda:InvokeFunction"
-  function_name = local.lambda_function_name
+  function_name = data.aws_lambda_function.existing.function_name
   principal     = "apigateway.amazonaws.com"
 
   source_arn = "${aws_api_gateway_rest_api.hash_generate.execution_arn}/*/*/*"
