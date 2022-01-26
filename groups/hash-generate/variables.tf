@@ -22,7 +22,7 @@ variable "environment" {
 variable "service" {
   type        = string
   description = "The service name to be used when creating AWS resources"
-  default     = "ch-bcrypt-hash-generate"
+  default     = "bcrypt-hash-generate"
 }
 
 variable "lambda_handler_name" {
