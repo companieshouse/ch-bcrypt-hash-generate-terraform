@@ -3,7 +3,10 @@ locals {
 }
 
 resource "aws_lambda_function" "hash_generate" {
-  depends_on = [aws_cloudwatch_log_group.hash_generate]
+  depends_on = [
+    aws_cloudwatch_log_group.hash_generate,
+    aws_iam_role.lambda_execution
+  ]
 
   function_name = local.lambda_function_name
   s3_bucket     = var.release_bucket_name
@@ -58,4 +61,13 @@ resource "aws_lambda_permission" "lambda_permission" {
   principal     = "apigateway.amazonaws.com"
 
   source_arn = "${aws_api_gateway_rest_api.hash_generate.execution_arn}/*/*/*"
+}
+
+data "aws_iam_policy" "logging" {
+  arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_logging" {
+  role       = aws_iam_role.lambda_execution.name
+  policy_arn = data.aws_iam_policy.logging.arn
 }

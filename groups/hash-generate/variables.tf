@@ -28,7 +28,7 @@ variable "service" {
 variable "lambda_handler_name" {
   type        = string
   description = "The lambda function entrypoint"
-  default     = "uk.gov.companieshouse.bcrypthashcheck.Handler::handleRequest"
+  default     = "index.handler"
 }
 
 variable "lambda_logs_retention_days" {
@@ -52,7 +52,7 @@ variable "lambda_timeout_seconds" {
 variable "lambda_runtime" {
   type        = string
   description = "The lambda runtime to use for the function"
-  default     = "nodejs14.x"
+  default     = "nodejs12.x"
 }
 
 variable "release_bucket_name" {

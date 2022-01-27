@@ -1,5 +1,5 @@
 aws_account = "staging"
-aws_profile = "heritage-staging-eu-west-2"
+aws_profile = "staging-eu-west-2"
 
 environment = "staging"
 
