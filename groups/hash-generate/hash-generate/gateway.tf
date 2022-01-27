@@ -104,5 +104,7 @@ resource "aws_api_gateway_method_settings" "hash_generate_resource_logging" {
     logging_level      = "INFO"
     data_trace_enabled = true
     metrics_enabled    = true
+    throttling_burst_limit = 0
+    throttling_rate_limit  = 0
   }
 }
